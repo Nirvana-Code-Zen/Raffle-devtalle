@@ -1,0 +1,16 @@
+services:
+  User.domain.UserRepository:
+    class: contexts/User/infrastructure/persistent/MongoRepository
+    arguments: ['@Shared.Logger']
+  User.application.UserSignUp:
+    class: contexts/User/application/UserSignUp
+    arguments: ['@User.domain.UserRepository', '@Shared.Authenticator']
+  User.application.UserSignIn:
+    class: contexts/User/application/UserSignIn
+    arguments: ['@User.domain.UserRepository', '@Shared.Authenticator']
+  User.application.UserFinder:
+    class: contexts/User/application/UserFinder
+    arguments: ['@User.domain.UserRepository']
+  User.application.SearchUserProfile:
+    class: contexts/User/application/SearchUserProfile
+    arguments: ['@User.application.UserFinder']

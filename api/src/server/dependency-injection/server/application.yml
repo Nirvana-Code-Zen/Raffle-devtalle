@@ -1,0 +1,14 @@
+services:
+  Server.StatusGetRequester:
+    class: server/controllers/Status/StatusGetRequester
+    arguments: []
+  Server.UserSignUpRequester:
+    class: server/controllers/User/UserSignUpRequester
+    arguments: ["@User.application.UserSignUp"]
+  Server.UserSignInRequester:
+    class: server/controllers/User/UserSignInRequester
+    arguments: ["@User.application.UserSignIn"]
+  Server.SearchUserProfileRequester:
+    class: server/controllers/User/SearchUserProfileRequester
+    arguments: ["@User.application.SearchUserProfile"]
+

@@ -1,20 +1,31 @@
 version: '3.7'
 
 services:
-  client:
+  ruffle_web:
     build:
       context: ./client
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-  server:
-    build:
-      context: ./server
+  ruffle_api:
+    container_name: ruffle_api
+    build: 
+      context: ./api
       dockerfile: Dockerfile
+      args:
+        SERVICE_PORT: ${SERVICE_PORT}
+    env_file:
+      - ./api/.env
     ports:
-      - "3001:3001"
+      - ${SERVICE_PORT}:${SERVICE_PORT}
     environment:
-      - MONGO_URI=${MONGO_URI}
+      DB_HOST: mongodb
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+      SERVICE_PORT: ${SERVICE_PORT}
+      JWT_SECRET: ${JWT_SECRET}
   mongodb:
     image: "mongo:latest"
     ports:

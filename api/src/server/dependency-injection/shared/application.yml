@@ -1,0 +1,7 @@
+services:
+  Shared.Logger:
+    class: contexts/shared/infrastructure/WinstonLogger
+  Shared.Authenticator:
+    class: contexts/shared/infrastructure/Auth/jwt
+    main: JwtAuthenticator
+    arguments: ['@Shared.Logger']

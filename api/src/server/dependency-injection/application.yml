@@ -1,0 +1,4 @@
+imports:
+  - { resource: server/application.yml }
+  - { resource: User/application.yml }
+  - { resource: shared/application.yml }
