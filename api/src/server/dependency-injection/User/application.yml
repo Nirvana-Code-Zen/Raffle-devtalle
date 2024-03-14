@@ -1,6 +1,6 @@
 services:
   User.domain.UserRepository:
-    class: contexts/User/infrastructure/persistent/MongoRepository
+    class: contexts/User/application/UserSignUp
     arguments: ['@Shared.Logger']
   User.application.UserSignUp:
     class: contexts/User/application/UserSignUp
